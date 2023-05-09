@@ -1,0 +1,39 @@
+<mat-toolbar *ngIf="isSidebarHidden" color="primary" class="mat-elevation-z8">
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+        <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+    </button>
+    {{ title }}
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8 sidenav-light"
+        [ngClass]="{'mat-sidenav-fs': !isSidebarHidden, 'mat-sidenav-toolbar': isSidebarHidden}">
+        <button mat-button class="menu-button">
+            <mat-icon>business</mat-icon>
+            <span>Клиенты</span>
+        </button>
+        <button mat-button class="menu-button">
+            <mat-icon>vpn_key</mat-icon>
+            <span>Серийные номера</span>
+        </button>
+        <button mat-button class="menu-button">
+            <mat-icon>person</mat-icon>
+            <span>Пользователи</span>
+        </button>
+        <button mat-button class="menu-button">
+            <mat-icon>assignment</mat-icon>
+            <span>Аудит</span>
+        </button>
+        <span class="spacer"></span>
+        <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button">
+            <mat-icon>help</mat-icon>
+            <span>Help</span>
+        </button>
+    </mat-sidenav>
+    <mat-sidenav-content [ngClass]="{'content-fs': !isSidebarHidden, 'content-toolbar': isSidebarHidden}">
+        <h2 *ngIf="!isSidebarHidden" class="md-display-1">{{ title }}</h2>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
